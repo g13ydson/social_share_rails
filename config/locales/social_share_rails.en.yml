@@ -1,0 +1,14 @@
+en:
+  social_share_rails:
+    share_to: Share to %{name}
+    twitter: Twitter
+    facebook: Facebook
+    google_bookmark: Google Bookmark
+    pinterest: Pinterest
+    email: Email
+    linkedin: Linkedin
+    vkontakte: Vkontakte
+    reddit: Reddit
+    telegram: Telegram
+    whatsapp_app: WhatsApp
+    whatsapp_web: WhatsApp
