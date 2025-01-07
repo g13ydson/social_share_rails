@@ -19,9 +19,10 @@ Gem::Specification.new do |spec|
 
   # Specify which files should be added to the gem when it is released.
   spec.files = IO.popen(%w[git ls-files -z], chdir: __dir__, err: IO::NULL) do |ls|
-    ls.readlines("\x0", chomp: true).reject do |f|
+    ls.each_line("\x0", chomp: true).reject do |f|
       (f == File.basename(__FILE__)) ||
-        f.start_with?(*%w[bin/ test/ spec/ features/ .git appveyor Gemfile])
+        f.start_with?(*%w[bin/ test/ spec/ features/ .git appveyor Gemfile]) ||
+        f.end_with?(".gem")
     end
   end
 
@@ -30,11 +31,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Runtime dependencies
-  spec.add_dependency "rails", ">= 4.2", "< 8.0"
   spec.add_dependency "i18n", ">= 0.7"
+  spec.add_dependency "rails", ">= 4.2", "< 8.0"
 
   # Development dependencies
+  spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rspec", "~> 3.10"
   spec.add_development_dependency "rubocop", "~> 1.0"
-  spec.add_development_dependency "bundler", "~> 2.0"
 end

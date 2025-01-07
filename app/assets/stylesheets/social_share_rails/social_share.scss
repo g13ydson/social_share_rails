@@ -1,0 +1,70 @@
+.social-share .share-icon {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+}
+
+.social-share .share-icon:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.social-share .share-twitter {
+  background-image: asset-url('social_share_rails/twitter.svg');
+}
+
+.social-share .rounded-twitter {
+  background-image: asset-url('social_share_rails/rounded-twitter.webp');
+}
+
+.social-share .share-facebook {
+  background-image: asset-url('social_share_rails/facebook.svg');
+}
+
+.social-share .rounded-facebook {
+  background-image: asset-url('social_share_rails/rounded-facebook.webp');
+}
+
+.social-share .share-google_bookmark {
+  background-image: asset-url('social_share_rails/google_bookmark.svg');
+}
+
+.social-share .share-pinterest {
+  background-image: asset-url('social_share_rails/pinterest.svg');
+}
+
+.social-share .share-email {
+  background-image: asset-url('social_share_rails/email.svg');
+}
+
+.social-share .share-linkedin {
+  background-image: asset-url('social_share_rails/linkedin.svg');
+}
+
+.social-share .rounded-linkedin {
+  background-image: asset-url('social_share_rails/rounded-linkedin.webp');
+}
+
+.social-share .share-vkontakte {
+  background-image: asset-url('social_share_rails/vkontakte.svg');
+}
+
+.social-share .share-reddit {
+  background-image: asset-url('social_share_rails/reddit.svg');
+}
+
+.social-share .rounded-reddit {
+  background-image: asset-url('social_share_rails/rounded-reddit.webp');
+}
+
+.social-share .share-telegram {
+  background-image: asset-url('social_share_rails/telegram.svg');
+}
+
+.social-share .share-whatsapp_app,
+.social-share .share-whatsapp_web {
+  background-image: asset-url('social_share_rails/whatsapp.svg');
+}

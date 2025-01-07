@@ -1,140 +1,195 @@
+
 # SocialShareRails
 
-**SocialShareRails** is a Ruby on Rails gem that simplifies adding social sharing buttons to your application. It supports multiple social platforms with customizable styles and JavaScript for seamless integration.
-
----
+SocialShareRails is a Ruby on Rails gem that simplifies the process of adding social sharing buttons to your Rails applications. It supports multiple social platforms, customizable styles, and an easy-to-use API for sharing.
 
 ## Features
 
-- **Support for Popular Platforms**: Twitter, Facebook, LinkedIn, Reddit, WhatsApp, Telegram, and more.
-- **Customizable Appearance**: Add rounded icons with a single option.
-- **Dynamic Social Sharing Buttons**: Easily configure the sites to be displayed.
-- **Optimized Sharing**: Built-in JavaScript for opening sharing popups and tracking clicks.
-- **Rails Compatible**: Works with Rails >= 4.2.
+- Supports popular social platforms: Twitter, Facebook, Pinterest, LinkedIn, Reddit, Telegram, WhatsApp, and more.
+- Customizable styles with rounded icons.
+- JavaScript-based popup for sharing links.
+- Google Analytics integration for tracking share events (optional).
+- Easy integration with Rails views and assets pipeline.
 
 ---
 
 ## Installation
 
-1. Add the gem to your Gemfile:
+Add this line to your application's `Gemfile`:
 
-   ```ruby
-   gem 'social_share_rails'
-   ```
+```ruby
+gem 'social_share_rails'
+```
 
-2. Run the bundle command to install the gem:
+Then, execute:
 
-   ```bash
-   bundle install
-   ```
+```bash
+bundle install
+```
 
-3. Add the required assets to your application:
+---
 
-   For Rails < 6:
-   ```erb
-   <%= stylesheet_link_tag 'social_share_rails', media: 'all' %>
-   <%= javascript_include_tag 'social_share_rails' %>
-   ```
+## Configuration
 
-   For Rails >= 6:
-   Add the gem's manifest to your `app/assets/config/manifest.js`:
-   ```javascript
-   //= link social_share_rails.css
-   //= link social_share_rails.js
-   ```
+### Include the Assets
+
+You can require the CSS and JavaScript files directly in your `application.js` and `application.css` (or `.scss`) files:
+
+In `app/assets/stylesheets/application.css` (or `application.scss`):
+```scss
+@import "social_share_rails/social_share";
+```
+
+In `app/assets/javascripts/application.js`:
+```javascript
+//= require social_share_rails/social_share
+```
+
+If you're using Rails 7 with `importmap`, pin the JavaScript in your `config/importmap.rb`:
+
+```ruby
+pin "social_share_rails", to: "social_share_rails/social_share.js"
+```
+
+And import it in your `app/javascript/application.js`:
+
+```javascript
+import "social_share_rails"
+```
 
 ---
 
 ## Usage
 
-### Adding Social Sharing Buttons
-
-Use the `social_share` helper method in your views to generate sharing buttons:
+### Basic Example
+Add the `social_share` helper to your views:
 
 ```erb
 <%= social_share("Share this post", {
   url: "https://example.com",
-  desc: "Check out this amazing post!",
-  allow_sites: %w[twitter facebook whatsapp_web reddit],
+  allow_sites: %w[twitter facebook linkedin],
   rounded: true
 }) %>
 ```
 
 ### Options
 
-- `title`: The title of the content being shared (optional).
-- `url`: The URL to share.
-- `desc`: A description of the content (optional).
-- `image`: The image URL (used by platforms like Pinterest).
-- `allow_sites`: An array of social platforms to display.
-  - Available platforms: `twitter`, `facebook`, `google_bookmark`, `pinterest`, `email`, `linkedin`, `vkontakte`, `reddit`, `telegram`, `whatsapp_app`, `whatsapp_web`.
-- `rounded`: Adds a rounded style to all icons when set to `true` (default is `false`).
+- **title** (String): The title of the post to share.
+- **url** (String): The URL to share.
+- **image** (String): Optional image URL for platforms that support it.
+- **desc** (String): Optional description of the content.
+- **allow_sites** (Array): List of social platforms to include.
+- **rounded** (Boolean): If `true`, uses rounded icon styles.
 
----
+Example with more options:
 
-### Examples
-
-#### Standard Icons
 ```erb
-<%= social_share("Share this article", {
-  url: "https://example.com",
-  desc: "Learn how to use SocialShareRails!",
-  allow_sites: %w[twitter facebook linkedin]
-}) %>
-```
-
-#### Rounded Icons
-```erb
-<%= social_share("Share this article", {
-  url: "https://example.com",
-  desc: "Learn how to use SocialShareRails!",
-  allow_sites: %w[twitter facebook linkedin],
-  rounded: true
+<%= social_share("Check out this article", {
+  url: "https://example.com/article",
+  image: "https://example.com/image.jpg",
+  desc: "This is an amazing article!",
+  allow_sites: %w[twitter facebook pinterest],
+  rounded: false
 }) %>
 ```
 
 ---
 
-## Customizing Styles
+## Supported Platforms
 
-The gem provides default styles for social sharing icons, but you can override them in your own CSS:
+- Twitter
+- Facebook
+- Google Bookmarks
+- Pinterest
+- LinkedIn
+- Reddit
+- Telegram
+- WhatsApp (App & Web)
+- VKontakte
+- Email
 
-```css
+---
+
+## I18n Support
+
+SocialShareRails supports multiple languages using Rails' built-in I18n system. The gem provides default translations for the following keys:
+
+```yaml
+en:
+  social_share_rails:
+    share_to: Share to %{name}
+    twitter: Twitter
+    facebook: Facebook
+    google_bookmark: Google Bookmark
+    pinterest: Pinterest
+    email: Email
+    linkedin: Linkedin
+    vkontakte: Vkontakte
+    reddit: Reddit
+    telegram: Telegram
+    whatsapp_app: WhatsApp
+    whatsapp_web: WhatsApp
+```
+
+To customize or add translations, create or modify the appropriate YAML file in your Rails application under `config/locales`. For example, to add translations in Portuguese:
+
+```yaml
+pt-BR:
+  social_share_rails:
+    share_to: Compartilhar no %{name}
+    twitter: Twitter
+    facebook: Facebook
+    google_bookmark: Favoritos do Google
+    pinterest: Pinterest
+    email: Email
+    linkedin: LinkedIn
+    vkontakte: VKontakte
+    reddit: Reddit
+    telegram: Telegram
+    whatsapp_app: WhatsApp (App)
+    whatsapp_web: WhatsApp (Web)
+```
+
+After adding your translations, Rails will automatically use them based on the current locale.
+
+---
+
+## Customization
+
+### Custom Styles
+You can override the default styles provided by the gem. Add your own styles in `app/assets/stylesheets/application.scss`:
+
+```scss
 .social-share .share-icon {
-  height: 30px;
   width: 30px;
-  background-size: 30px 30px;
+  height: 30px;
+  background-size: cover;
 }
 
-.social-share .rounded-twitter {
-  background-image: asset-url('social_share/rounded-twitter.webp');
+.social-share .share-twitter {
+  background-image: url('/path/to/your/custom-twitter-icon.svg');
 }
 ```
-
----
-
-## JavaScript Integration
-
-The gem includes JavaScript functionality for opening sharing popups and handling button clicks. This is done automatically, but you can also call the methods manually:
-
-- `SocialShare.openUrl(url, width, height)`: Opens a popup window with the specified dimensions.
-- `SocialShare.share(element)`: Triggers the sharing logic for the given button.
 
 ---
 
 ## Development
 
-To contribute to the gem, follow these steps:
+### Running Tests
+To run the tests locally, use:
 
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-name`).
-3. Commit your changes (`git commit -m "Add feature"`).
-4. Push your branch (`git push origin feature-name`).
-5. Open a pull request.
+```bash
+bundle exec rspec
+```
+
+---
+
+## Contributing
+
+Bug reports and pull requests are welcome on [GitHub](https://github.com/g13ydson/social_share_rails). This project is intended to be a safe, welcoming space for collaboration.
 
 ---
 
 ## License
 
-This gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
+The gem is available as open source under the terms of the [MIT License](LICENSE.txt).
