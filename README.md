@@ -75,7 +75,6 @@ Add the `social_share` helper to your views:
 
 - **title** (String): The title of the post to share.
 - **url** (String): The URL to share.
-- **image** (String): Optional image URL for platforms that support it.
 - **desc** (String): Optional description of the content.
 - **allow_sites** (Array): List of social platforms to include.
 - **rounded** (Boolean): If `true`, uses rounded icon styles.
@@ -85,7 +84,6 @@ Example with more options:
 ```erb
 <%= social_share("Check out this article", {
   url: "https://example.com/article",
-  image: "https://example.com/image.jpg",
   desc: "This is an amazing article!",
   allow_sites: %w[twitter facebook pinterest],
   rounded: false

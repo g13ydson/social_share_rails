@@ -5,7 +5,7 @@ module SocialShareRails
       is_rounded = opts.delete(:rounded) || false
 
       html = []
-      html << "<div class='social-share' data-title='#{ERB::Util.html_escape(title)}' data-img='#{opts[:image]}'"
+      html << "<div class='social-share' data-title='#{ERB::Util.html_escape(title)}'"
       html << "data-url='#{opts[:url]}' data-desc='#{opts[:desc]}'>"
 
       opts[:allow_sites].each do |name|
