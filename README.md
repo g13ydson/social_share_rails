@@ -71,10 +71,23 @@ Add the `social_share` helper to your views:
 }) %>
 ```
 
+#### Fallback to Current Page URL
+
+If no url is provided, the helper will automatically use the current page URL (window.location.href) as the fallback. For example:
+
+```erb
+<%= social_share("Share this post", {
+  allow_sites: %w[twitter facebook linkedin],
+  rounded: true
+}) %>
+```
+In this case, the current page URL will be shared.
+
+
 ### Options
 
 - **title** (String): The title of the post to share.
-- **url** (String): The URL to share.
+- **url** (String): The URL to share (falls back to the current page URL if not provided).
 - **desc** (String): Optional description of the content.
 - **allow_sites** (Array): List of social platforms to include.
 - **rounded** (Boolean): If `true`, uses rounded icon styles.
