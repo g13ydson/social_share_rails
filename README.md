@@ -8,7 +8,6 @@ SocialShareRails is a Ruby on Rails gem that simplifies the process of adding so
 - Supports popular social platforms: Twitter, Facebook, Pinterest, LinkedIn, Reddit, Telegram, WhatsApp, and more.
 - Customizable styles with rounded icons.
 - JavaScript-based popup for sharing links.
-- Google Analytics integration for tracking share events (optional).
 - Easy integration with Rails views and assets pipeline.
 
 ---

@@ -17,13 +17,6 @@ window.SocialShare = {
     return result;
   },
 
-  trackEvent: function(site) {
-    var ga = window[window["GoogleAnalyticsObject"] || "ga"];
-    if (typeof ga === "function") {
-      ga("send", "event", "Social Share Button", "click", site);
-    }
-  },
-
   share: function(el) {
     if (!el.getAttribute) el = document.querySelector(el);
 
@@ -35,8 +28,6 @@ window.SocialShare = {
     var desc = attributes.desc;
     var img = encodeURIComponent(parent.getAttribute("data-img") || "");
     var via = encodeURIComponent(parent.getAttribute("data-via") || "");
-
-    this.trackEvent(site);
 
     var actions = {
       email: function() {
