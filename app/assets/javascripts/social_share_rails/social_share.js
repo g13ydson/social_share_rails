@@ -39,7 +39,7 @@ window.SocialShare = {
         window.SocialShare.openUrl("https://twitter.com/intent/tweet?url=" + url + "&text=" + title + "&hashtags=" + hashtags + viaStr, 650, 300);
       },
       facebook: function() {
-        window.SocialShare.openUrl("http://www.facebook.com/sharer/sharer.php?u=" + url, 555, 400);
+        window.SocialShare.openUrl("http://www.facebook.com/sharer/sharer.php?display=page&u=" + url, 555, 400);
       },
       google_bookmark: function() {
         window.SocialShare.openUrl("https://www.google.com/bookmarks/mark?op=edit&output=popup&bkmk=" + url + "&title=" + title);
